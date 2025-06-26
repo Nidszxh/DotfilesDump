@@ -1,11 +1,11 @@
-# 🌀 TokyoNight Conky Configuration
+# TokyoNight Conky Configuration
 
 A Minimal Conky configuration inspired by the [TokyoNight](https://github.com/folke/tokyonight.nvim) color scheme. Designed for Linux Mint Cinnamon and optimized for JetBrains Mono font lovers.
 
 This config displays essential system information  CPU, memory, disk usage, uptime, temperatures, and network activity in a stylish panel on your desktop.
 
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
 conky-configs/
@@ -13,9 +13,9 @@ conky-configs/
 └── README.md
 ```
 
-# ⚙️ Installation
+# Installation
 
-### 🧰 Dependencies
+### Dependencies
 
 Make sure you have Conky and lm-sensors installed:
 
@@ -28,7 +28,7 @@ Run sensor detection if not done before:
 ```bash
 sudo sensors-detect
 ```
-### 📦 Setup Instructions
+### Setup Instructions
 
 1. Clone This Repository
 ```bash
