@@ -16,9 +16,10 @@ A fast, minimal, and good-looking Alacritty setup built for everyday dev work.
 
 ```bash
 sudo apt install alacritty
+```
+
 For latest features, consider building from source:
 https://github.com/alacritty/alacritty
-```
 
 
 ### 2. Apply This Config
