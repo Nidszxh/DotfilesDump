@@ -1,17 +1,18 @@
 [env]
+WINIT_X11_SCALE_FACTOR = "1.0" 
+
 TERM = "alacritty"
 COLORTERM = "truecolor"
 
 # Window Configuration
 [window]
-decorations = "none"          
+decorations = "none"          # A clean window
 dynamic_padding = true        # Intelligent space management
 resize_increments = true      # Precise resizing control
 opacity = 0.75            
 startup_mode = "Windowed"    
 dimensions = { columns = 89, lines = 24 }  
 option_as_alt = "Both"
-blur = true                   
 
 [window.padding]
 x = 22                        
@@ -22,11 +23,11 @@ instance = "Alacritty"
 general = "Alacritty"
 
 [scrolling]
-history = 100000              # Vast history for power users
-multiplier = 3                # Smooth, controlled scrolling
+history = 30000               # Vast history for power users
+multiplier = 4                # Smooth, controlled scrolling
 
 [font]
-size = 11.8                     
+size = 12                     
 builtin_box_drawing = true    # Crisp UI elements and borders
 
 [font.normal]
@@ -57,14 +58,13 @@ y = 0
 [cursor]
 blink_interval = 650          # Hypnotic rhythm
 blink_timeout = 8             
-thickness = 0.14              # Refined beam thickness
+thickness = 0.15              # Refined beam thickness
 unfocused_hollow = true       # Subtle focus indication
 vi_mode_style = "Block"       
 
 [cursor.style]
 blinking = "On"
 shape = "Beam"               
-
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -89,13 +89,12 @@ indexed_colors = [
 [colors.primary]
 background = "#1a1b26"        # Deep night sky backdrop
 foreground = "#c0caf5"        # Crystalline blue-white text
-bright_foreground = "#ffffff" # Pure white highlights
 dim_foreground = "#9aa5ce"    # Elegant muted text
 
 # Sophisticated selection with glow effect
 [colors.selection]
 text = "CellBackground"
-background = "#33467C"        # Rich sapphire selection
+background = "#364A82"        # Rich sapphire selection
 
 # Search highlighting with thematic harmony
 [colors.search.matches]
@@ -114,15 +113,6 @@ background = "#e0af68"        # Warm gold start
 [colors.hints.end]
 foreground = "#1a1b26"
 background = "#7dcfff"        # Crystal cyan end
-
-# Vi mode visual feedback
-[colors.line_indicator]
-foreground = "None"
-background = "None"
-
-[colors.footer_bar]
-foreground = "#1a1b26"
-background = "#7aa2f7"        # Electric blue status
 
 # Core TokyoNight palette - artistically refined
 [colors.normal]
@@ -156,7 +146,6 @@ magenta = "#c678dd"           # Faded violet
 cyan    = "#56b6c2"           # Soft teal
 white   = "#828bb1"           # Silver mist
 
-
 [bell]
 animation = "EaseOutExpo"     # Silky smooth animation
 color = "#bb9af7"             # Signature purple flash
@@ -168,11 +157,11 @@ save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 
 [mouse]
-hide_when_typing = true
+hide_when_typing = true  
 bindings = [
-  { mouse = "Right",  action = "PasteSelection" },
-
-  { mouse = "Middle", action = "PasteSelection" },
+  { mouse = "Right", action = "PasteSelection" },
+  { mouse = "Forward", mods = "Control", action = "IncreaseFontSize" },
+  { mouse = "Back", mods = "Control", action = "DecreaseFontSize" },
 ]
 
 [hints]
@@ -191,9 +180,8 @@ action = "Copy"
 mouse = { enabled = true, mods = "Control" }
 binding = { key = "P", mods = "Control|Shift" }
 
-# Git commit hashes
 [[hints.enabled]]
-regex = "\\b[0-9a-f]{7,40}\\b"
+regex = "(?:^|\\s)([0-9a-f]{7,40})(?=\\s|$|[:;,\\.])"
 action = "Copy"
 mouse = { enabled = true, mods = "Control" }
 binding = { key = "G", mods = "Control|Shift" }
@@ -206,23 +194,22 @@ mouse = { enabled = true, mods = "Control" }
 binding = { key = "I", mods = "Control|Shift" }
 
 [terminal]
-shell = { program = "/usr/bin/zsh", args = ["-l"] }
 osc52 = "CopyPaste"           # Advanced clipboard integration
 
-[general]
-live_config_reload = true     # Dynamic configuration updates
-
+[terminal.shell]
+program = "/usr/bin/zsh"
+args = ["-l"]
 
 # Essential clipboard operations
-[[keyboard.bindings]]
-key = "V"
-mods = "Control|Shift"
-action = "Paste"
-
 [[keyboard.bindings]]
 key = "C"
 mods = "Control|Shift"
 action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
 
 [[keyboard.bindings]]
 key = "Insert"
@@ -237,11 +224,6 @@ action = "ResetFontSize"
 
 [[keyboard.bindings]]
 key = "Equals"
-mods = "Control"
-action = "IncreaseFontSize"
-
-[[keyboard.bindings]]
-key = "Plus"
 mods = "Control"
 action = "IncreaseFontSize"
 
@@ -261,7 +243,7 @@ key = "Space"
 mods = "Control|Shift"
 action = "ToggleViMode"
 
-# Advanced search capabilities
+# Advanced Search capabilities
 [[keyboard.bindings]]
 key = "F"
 mods = "Control"
@@ -334,15 +316,15 @@ key = "L"
 mods = "Control|Alt"
 action = "ClearHistory"
 
+# Vi-mode enhancements
 [[keyboard.bindings]]
-key = "O"
-mods = "Control|Shift"
-action = "IncreaseFontSize"  
+key = "Escape"
+action = "ToggleViMode"
 
 [[keyboard.bindings]]
-key = "P"
-mods = "Control|Shift"
-action = "DecreaseFontSize"  
+key = "I"
+mode = "Vi"
+action = "ToggleViMode"
 
 # Enhanced word navigation
 [[keyboard.bindings]]
@@ -406,6 +388,16 @@ mods = "Control|Shift"
 chars = "\u0001c"             # Tmux: new window
 
 [[keyboard.bindings]]
+key = "Tab"
+mods = "Control"
+chars = "\u0001n"             # Tmux next window
+
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control|Shift"
+chars = "\u0001p"             # Tmux previous window
+
+[[keyboard.bindings]]
 key = "W"
 mods = "Control|Shift"
 chars = "\u0001x"             # Tmux: kill pane
@@ -437,17 +429,13 @@ key = "Period"
 mods = "Control|Shift"
 chars = "cd ..\r"             # Parent directory shortcut
 
-# Vi-mode enhancements
+# Better search navigation
 [[keyboard.bindings]]
-key = "Escape"
-action = "ToggleViMode"
+key = "G"
+mods = "Control"
+action = "SearchNext"
 
 [[keyboard.bindings]]
-key = "I"
-mode = "Vi"
-action = "ScrollToBottom"
-
-[[keyboard.bindings]]
-key = "I"
-mode = "Vi"
-action = "ToggleViMode"
+key = "G"
+mods = "Control|Shift"
+action = "SearchPrevious"
