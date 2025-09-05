@@ -30,7 +30,7 @@ cp alacritty.toml ~/.config/alacritty/
 ```
 
 ### 3. Requirements
-```bash
+
 Shell: Zsh recommended (configured in the terminal block)
 
 Compositor: Blur support requires a compositor like muffin, xcompmgr, or picom 
@@ -38,5 +38,5 @@ Compositor: Blur support requires a compositor like muffin, xcompmgr, or picom
 Font: JetBrainsMono Nerd Font
 
 Tmux: Auto-launch is integrated into keybindings
-```
+
 
